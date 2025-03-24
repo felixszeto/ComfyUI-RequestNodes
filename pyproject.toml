@@ -1,7 +1,7 @@
 [project]
 name = "ComfyUI-RequestNodes"
 description = "This is a request node tool designed for making HTTP requests (GET/POST) to APIs and viewing the responses. It is useful for API testing and development."
-version = "1.0.2"
+version = "1.0.1"
 license = {file = "LICENSE"}
 
 [project.urls]
