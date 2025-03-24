@@ -1,14 +1,14 @@
 [project]
-name = ""
-description = ""
-version = "1.0.0"
-license = "LICENSE"
+name = "ComfyUI-RequestNodes"
+description = "This is a request node tool designed for making HTTP requests (GET/POST) to APIs and viewing the responses. It is useful for API testing and development."
+version = "1.0.1"
+license = {file = "LICENSE"}
 
 [project.urls]
-Repository = ""
+Repository = "https://github.com/felixszeto/ComfyUI-RequestNodes"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
-DisplayName = "ComfyUI-AIT"
+PublisherId = "felixszeto"
+DisplayName = "ComfyUI-RequestNodes"
 Icon = ""
