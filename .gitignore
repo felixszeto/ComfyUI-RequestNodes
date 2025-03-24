@@ -1,0 +1,16 @@
+*.pem
+ssl/
+__pycache__/
+*.pyc
+*.~
+*.swp
+*.bak
+*.tmp
+*.log
+env/
+envs/
+venv/
+environment.yml
+.DS_Store
+Thumbs.db
+faster-whisper-large-v3/
