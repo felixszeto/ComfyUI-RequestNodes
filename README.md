@@ -36,6 +36,9 @@ After installation, you can find the "Get Node" and "Post Node" nodes under the 
     *   **param**: Enter Param information key/value.
     *   **output_format**: Select the output format of the response, such as "text" or "json".
     *   **response**: Output response content.
+![2051bd17154dbb9ab4b203f955c873a](https://github.com/user-attachments/assets/f1774cfe-66d9-4da6-b77d-35c51247d1f2)
+
+
 
 *   **Post Node**:
     *   **url**: Enter the URL address you want to request.
@@ -45,6 +48,8 @@ After installation, you can find the "Get Node" and "Post Node" nodes under the 
         *   For example, if you have an input string named `str1` with the value "example", and your JSON data is `{"key": "__str1__"}`, the actual request body will be `{"key": "example"}`.
     *   **output_format**: Select the output format of the response, such as "text" or "json".
     *   **response**: Output response content.
+![62c32f115bc6aaf8bdf454755275695](https://github.com/user-attachments/assets/1d1e090d-1c4e-4891-9c5e-d1ddcabd06da)
+
    
 ## Contribution
 
