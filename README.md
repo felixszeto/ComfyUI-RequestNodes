@@ -2,9 +2,6 @@
 
 [中文版本](README_zh.md)
 
----
-# ComfyUI-RequestNodes
-
 ## Introduction
 
 ComfyUI-RequestNodes is a custom node plugin for ComfyUI that provides functionality for sending HTTP requests. Currently, it includes the following nodes:
