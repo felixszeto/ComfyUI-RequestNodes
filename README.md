@@ -1,55 +1,59 @@
 # ComfyUI-RequestNodes
 
-## 簡介
+[中文版本](README_zh.md)
 
-ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於發送 HTTP 請求的功能。目前包含以下節點：
+---
+# ComfyUI-RequestNodes
 
-*   **Get Node**: 發送 GET 請求並獲取響應。
-*   **Post Node**: 發送 POST 請求並獲取響應。
+## Introduction
 
-## 安裝
+ComfyUI-RequestNodes is a custom node plugin for ComfyUI that provides functionality for sending HTTP requests. Currently, it includes the following nodes:
 
-要安裝 ComfyUI-RequestNodes，請按照以下步驟操作：
+*   **Get Node**: Sends GET requests and retrieves responses.
+*   **Post Node**: Sends POST requests and retrieves responses.
 
-1.  **打開 ComfyUI custom_nodes 目錄。**
-    *   在你的 ComfyUI 安裝目錄下，找到 `custom_nodes` 文件夾。
+## Installation
 
-2.  **克隆 ComfyUI-RequestNodes 倉庫。**
-    *   在 `custom_nodes` 目錄中打開終端或命令提示符。
-    *   運行以下命令來克隆倉庫：
+To install ComfyUI-RequestNodes, follow these steps:
+
+1.  **Open the ComfyUI custom_nodes directory.**
+    *   In your ComfyUI installation directory, find the `custom_nodes` folder.
+
+2.  **Clone the ComfyUI-RequestNodes repository.**
+    *   Open a terminal or command prompt in the `custom_nodes` directory.
+    *   Run the following command to clone the repository:
 
     ```bash
     git clone https://github.com/felixszeto/ComfyUI-RequestNodes.git
     ```
 
-3.  **重啟 ComfyUI。**
-    *   關閉並重新啟動 ComfyUI，以加載新安裝的節點。
+3.  **Restart ComfyUI.**
+    *   Close and restart ComfyUI to load the newly installed nodes.
 
-## 使用方法
+## Usage
 
-安裝完成後，你可以在 ComfyUI 的節點列表中找到 "Request Nodes" 類別下的 "Get Node" 和 "Post Node" 節點。
+After installation, you can find the "Get Node" and "Post Node" nodes under the "Request Nodes" category in the ComfyUI node list.
 
 *   **Get Node**:
-    *   **url**: 輸入你要請求的 URL 地址。
-    *   **param**: 輸入Param信息key/value。
-    *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
-    *   **response**: 輸出響應內容。
+    *   **url**: Enter the URL address you want to request.
+    *   **param**: Enter Param information key/value.
+    *   **output_format**: Select the output format of the response, such as "text" or "json".
+    *   **response**: Output response content.
 
 *   **Post Node**:
-    *   **url**: 輸入你要請求的 URL 地址。
-    *   **data**: 輸入 POST 請求的數據，JSON 格式。
-    *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
-    *   **response**: 輸出響應內容。
+    *   **url**: Enter the URL address you want to request.
+    *   **data**: Enter the data for the POST request, in JSON format.
+    *   **output_format**: Select the output format of the response, such as "text" or "json".
+    *   **response**: Output response content.
 
-## 貢獻
+## Contribution
 
-歡迎提交 issue 和 pull request 來改進 ComfyUI-RequestNodes!
-
+Welcome to submit issues and pull requests to improve ComfyUI-RequestNodes!
 
 ---
 
-**注意:**
+**Note:**
 
-*   請確保你的 ComfyUI 環境已正確安裝 Git。
-*   如果你的 ComfyUI 安裝目錄不在默認位置，請根據你的實際情況調整路徑。
-*   如果遇到任何問題，請查看 GitHub 倉庫的 issue 頁面或提交新的 issue。
+*   Please ensure that your ComfyUI environment has Git installed correctly.
+*   If your ComfyUI installation directory is not in the default location, please adjust the path according to your actual situation.
+*   If you encounter any problems, please check the issue page of the GitHub repository or submit a new issue.
