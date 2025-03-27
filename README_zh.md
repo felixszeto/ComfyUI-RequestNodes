@@ -36,6 +36,8 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
     *   **param**: 輸入Param信息key/value。
     *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
     *   **response**: 輸出響應內容。
+   ![2051bd17154dbb9ab4b203f955c873a](https://github.com/user-attachments/assets/212b25d8-33ca-47dc-941f-61fce8b6e302)
+
 
 *   **Post Node**:
     *   **url**: 輸入你要請求的 URL 地址。
@@ -45,6 +47,7 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
         *   例如，如果你有一個名為 `str1` 的輸入字符串，其值為 "example"，並且你的 JSON 數據是 `{"key": "__str1__"}`，則實際的請求體將是 `{"key": "example"}`。
     *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
     *   **response**: 輸出響應內容。
+    ![62c32f115bc6aaf8bdf454755275695](https://github.com/user-attachments/assets/4b157e19-7c31-40fe-9691-e43fabb81327)
 
 ## 貢獻
 
