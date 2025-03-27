@@ -38,14 +38,14 @@ After installation, you can find the "Get Node" and "Post Node" nodes under the 
     *   **response**: Output response content.
 
 *   **Post Node**:
-    *   **url**: 輸入你要請求的 URL 地址。
-    *   **data**: 輸入 POST 請求的數據，JSON 格式。
-        *   在 `data` 字段中，你可以使用佔位符，例如 `__str1__`, `__str2__` 等。
-        *   這些佔位符將會被輸入字符串 `str1`, `str2` 等的值替換。
-        *   例如，如果你有一個名為 `str1` 的輸入字符串，其值為 "example"，並且你的 JSON 數據是 `{"key": "__str1__"}`，則實際的請求體將是 `{"key": "example"}`。
-    *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
-    *   **response**: 輸出響應內容。
-
+    *   **url**: Enter the URL address you want to request.
+    *   **data**: Enter the data for the POST request, in JSON format.
+        *   In the `data` field, you can use placeholders like `__str1__`, `__str2__`, etc. in your JSON request body.
+        *   These placeholders will be replaced by the values of input strings `str1`, `str2`, etc. respectively.
+        *   For example, if you have an input string named `str1` with the value "example", and your JSON data is `{"key": "__str1__"}`, the actual request body will be `{"key": "example"}`.
+    *   **output_format**: Select the output format of the response, such as "text" or "json".
+    *   **response**: Output response content.
+   
 ## Contribution
 
 Welcome to submit issues and pull requests to improve ComfyUI-RequestNodes!
