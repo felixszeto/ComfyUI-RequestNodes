@@ -2,9 +2,6 @@
 
 [English Version](README.md)
 
----
-# ComfyUI-RequestNodes
-
 ## 簡介
 
 ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於發送 HTTP 請求的功能。目前包含以下節點：
