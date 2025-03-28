@@ -5,6 +5,6 @@ from .post_node import PostRequestNode
 
 
 NODE_CLASS_MAPPINGS = { 
-    "GetRequestNode": GetRequestNode,
-    "PostRequestNode": PostRequestNode
+    "Get Request Node": GetRequestNode,
+    "Post Request Node": PostRequestNode
 }
