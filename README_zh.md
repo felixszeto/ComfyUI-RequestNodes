@@ -16,7 +16,11 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
 本插件包含以下測試資源：
 * `base_flask_server.py` - 測試用 Python Flask 服務器
 * `get_node.json` - GET 請求工作流模板
+![7da7547075bfc89220dc8bff1f8c62f](https://github.com/user-attachments/assets/ce9e6f04-1618-433a-8d69-4857a280dc61)
+![8b717a369b523e69385f50fe176ccf2](https://github.com/user-attachments/assets/b5f1795a-589d-43df-8e82-a1a079262e5f)
 * `post_node.json` - POST 請求工作流模板
+![cd28f656ab8ae165db4095d325fa38d](https://github.com/user-attachments/assets/28ad21f5-2949-4c41-8d61-994b9170f37c)
+![c7549268846ea3b570462c92acfb16c](https://github.com/user-attachments/assets/12dbd00b-af85-439d-978f-301760536005)
 
 ## 安裝
 
@@ -46,17 +50,19 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
     *   **headers**: 輸入由Header Node生成的請求頭部。
     *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
     *   **response**: 輸出響應內容。
-    *   ![2051bd17154dbb9ab4b203f955c873a](https://github.com/user-attachments/assets/212b25d8-33ca-47dc-941f-61fce8b6e302)
+    *   ![image](https://github.com/user-attachments/assets/cdb1938f-f8a9-4a4b-a787-90fa4d543523)
 
 *   **Header Node**:
     *   **json_array**: 輸入由Key/Value Node生成的JSON數組作為請求頭部。
     *   **output**: 輸出合併後的請求頭部。
+    *   ![image](https://github.com/user-attachments/assets/832e4a4a-ffd5-42b2-bc3c-0c24f113c0bf)
 
 *   **Key/Value Node**:
     *   **key**: 輸入鍵名。
     *   **value**: 輸入鍵值。
     *   **input_json**: 可選，連接其他Key/Value Node的輸出。
     *   **output**: 輸出包含當前鍵值對的JSON數組。
+    *   ![image](https://github.com/user-attachments/assets/dfe7dab0-2b1b-4f99-ac6f-89e01d03b7e0)
 
 
 *   **Post Node**:
@@ -67,7 +73,7 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
         *   例如，如果你有一個名為 `str1` 的輸入字符串，其值為 "example"，並且你的 JSON 數據是 `{"key": "__str1__"}`，則實際的請求體將是 `{"key": "example"}`。
     *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
     *   **response**: 輸出響應內容。
-    *   ![62c32f115bc6aaf8bdf454755275695](https://github.com/user-attachments/assets/4b157e19-7c31-40fe-9691-e43fabb81327)
+    *   ![image](https://github.com/user-attachments/assets/6eda9fef-48cf-478c-875e-6bd6d850bff2)
 
 ## 貢獻
 
