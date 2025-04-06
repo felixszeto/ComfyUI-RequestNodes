@@ -12,16 +12,8 @@ class GetRequestNode:
                 "target_url": ("STRING", {"default": "https://example.com/api"}),
             },
             "optional": {
-                "key1": ("STRING", {"default": ""}),
-                "value1": ("STRING", {"default": ""}),
-                "key2": ("STRING", {"default": ""}),
-                "value2": ("STRING", {"default": ""}),
-                "key3": ("STRING", {"default": ""}),
-                "value3": ("STRING", {"default": ""}),
-                "key4": ("STRING", {"default": ""}),
-                "value4": ("STRING", {"default": ""}),
-                "key5": ("STRING", {"default": ""}),
-                "value5": ("STRING", {"default": ""}),
+                "headers": ("DICT", {"default": None}),
+                "json_array": ("LIST", {"default": []}),
             }
         }
  
@@ -32,30 +24,25 @@ class GetRequestNode:
  
     CATEGORY = "RequestNode/Get Request"
  
-    def make_get_request(self, target_url, 
-                         key1="", value1="", 
-                         key2="", value2="", 
-                         key3="", value3="", 
-                         key4="", value4="", 
-                         key5="", value5=""):
+    def make_get_request(self, target_url, headers=None, json_array=None):
         # 構建參數字典
         params = {}
         
-        # 只有當 key 和 value 都不為空時才添加到參數中
-        if key1 and value1:
-            params[key1] = value1
-        if key2 and value2:
-            params[key2] = value2
-        if key3 and value3:
-            params[key3] = value3
-        if key4 and value4:
-            params[key4] = value4
-        if key5 and value5:
-            params[key5] = value5
+        # 合併json_array中的所有JSON
+        if json_array:
+            for json_obj in json_array:
+                if isinstance(json_obj, dict):
+                    params.update(json_obj)
         
+        # 設置默認headers
+        request_headers = {'Content-Type': 'application/json'}
+        if headers:
+            request_headers.update(headers)
+        
+
         try:
             # 使用構建的參數發送 GET 請求
-            response = requests.get(target_url, params=params)
+            response = requests.get(target_url, params=params, headers=request_headers)
             
             # 準備四種不同格式的輸出
             text_output = response.text

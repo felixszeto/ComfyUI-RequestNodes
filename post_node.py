@@ -14,6 +14,7 @@ class PostRequestNode:
                 "request_body": ("STRING", {"default": "{}", "multiline": True}),
             },
             "optional": {
+                "headers": ("DICT", {"default": None}),
                 "str0": ("STRING", {"default": ""}),
                 "str1": ("STRING", {"default": ""}),
                 "str2": ("STRING", {"default": ""}),
@@ -34,7 +35,7 @@ class PostRequestNode:
  
     CATEGORY = "RequestNode/Post Request"
  
-    def make_post_request(self, target_url, request_body, str0="", str1="", str2="", str3="", str4="", str5="", str6="", str7="", str8="", str9=""):
+    def make_post_request(self, target_url, request_body, headers=None, str0="", str1="", str2="", str3="", str4="", str5="", str6="", str7="", str8="", str9=""):
         # 收集所有字符串輸入
         string_inputs = {
             "str0": str0, "str1": str1, "str2": str2, "str3": str3, "str4": str4,
@@ -53,10 +54,13 @@ class PostRequestNode:
         except json.JSONDecodeError:
             body_data = {"error": "Invalid JSON in request_body"}
         
-        headers = {'Content-Type': 'application/json'}
+        # 合併默認headers與自定義headers
+        request_headers = {'Content-Type': 'application/json'}
+        if headers:
+            request_headers.update(headers)
         
         try:
-            response = requests.post(target_url, json=body_data, headers=headers)
+            response = requests.post(target_url, json=body_data, headers=request_headers)
             
             # 準備四種不同格式的輸出
             text_output = response.text

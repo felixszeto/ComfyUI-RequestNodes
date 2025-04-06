@@ -8,6 +8,15 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
 
 *   **Get Node**: 發送 GET 請求並獲取響應。
 *   **Post Node**: 發送 POST 請求並獲取響應。
+*   **Header Node**: 管理 HTTP 請求頭部。
+*   **Key/Value Node**: 創建鍵值對數據，可用於構建請求參數或頭部。
+
+## 測試資源
+
+本插件包含以下測試資源：
+* `base_flask_server.py` - 測試用 Python Flask 服務器
+* `get_node.json` - GET 請求工作流模板
+* `post_node.json` - POST 請求工作流模板
 
 ## 安裝
 
@@ -33,10 +42,21 @@ ComfyUI-RequestNodes 是一個 ComfyUI 的自定義節點插件，提供用於�
 
 *   **Get Node**:
     *   **url**: 輸入你要請求的 URL 地址。
-    *   **param**: 輸入Param信息key/value。
+    *   **json_array**: 輸入由Key/Value Node生成的JSON數組作為請求參數。
+    *   **headers**: 輸入由Header Node生成的請求頭部。
     *   **output_format**: 選擇響應的輸出格式，例如 "text" 或 "json"。
     *   **response**: 輸出響應內容。
     *   ![2051bd17154dbb9ab4b203f955c873a](https://github.com/user-attachments/assets/212b25d8-33ca-47dc-941f-61fce8b6e302)
+
+*   **Header Node**:
+    *   **json_array**: 輸入由Key/Value Node生成的JSON數組作為請求頭部。
+    *   **output**: 輸出合併後的請求頭部。
+
+*   **Key/Value Node**:
+    *   **key**: 輸入鍵名。
+    *   **value**: 輸入鍵值。
+    *   **input_json**: 可選，連接其他Key/Value Node的輸出。
+    *   **output**: 輸出包含當前鍵值對的JSON數組。
 
 
 *   **Post Node**:
