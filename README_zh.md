@@ -18,11 +18,11 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
 插件包含以下測試資源：
 * `base_flask_server.py` - 用於測試的 Python Flask 伺服器
 * `get_node.json` - GET 請求工作流程模板
-![7da7547075bfc89220dc8bff1f8c62f](https://github.com/user-attachments/assets/ce9e6f04-1618-433a-8d69-4857a280dc61)
-![8b717a369b523e69385f50fe176ccf2](https://github.com/user-attachments/assets/b5f1795a-589d-43df-8e82-a1a079262e5f)
+![rest_node](workflows/get_node.png)
 * `post_node.json` - POST 請求工作流程模板
-![cd28f656ab8ae165db4095d325fa38d](https://github.com/user-attachments/assets/28ad21f5-2949-4c41-8d61-994b9170f37c)
-![c7549268846ea3b570462c92acfb16c](https://github.com/user-attachments/assets/12dbd00b-af85-439d-978f-301760536005)
+![rest_node](workflows/post_node.png)
+* `workflows/rest_node.json` - REST API 請求工作流程模板
+![rest_node](workflows/rest_node.png)
 
 ## 安裝
 

@@ -18,11 +18,11 @@ ComfyUI-RequestNodes is a custom node plugin for ComfyUI that provides functiona
 The plugin includes the following test resources:
 * `base_flask_server.py` - Python Flask server for testing
 * `get_node.json` - GET request workflow template
-![7da7547075bfc89220dc8bff1f8c62f](https://github.com/user-attachments/assets/ce9e6f04-1618-433a-8d69-4857a280dc61)
-![8b717a369b523e69385f50fe176ccf2](https://github.com/user-attachments/assets/b5f1795a-589d-43df-8e82-a1a079262e5f)
+![rest_node](workflows/get_node.png)
 * `post_node.json` - POST request workflow template
-![cd28f656ab8ae165db4095d325fa38d](https://github.com/user-attachments/assets/28ad21f5-2949-4c41-8d61-994b9170f37c)
-![c7549268846ea3b570462c92acfb16c](https://github.com/user-attachments/assets/12dbd00b-af85-439d-978f-301760536005)
+![rest_node](workflows/post_node.png)
+* `workflows/rest_node.json` - REST API request workflow template
+![rest_node](workflows/rest_node.png)
 
 ## Installation
 
