@@ -12,8 +12,8 @@ class GetRequestNode:
                 "target_url": ("STRING", {"default": "https://example.com/api"}),
             },
             "optional": {
-                "headers": ("DICT", {"default": None}),
-                "json_array": ("LIST", {"default": []}),
+                "headers": ("KEY_VALUE", {"default": None}),
+                "query_list": ("KEY_VALUE", {"default": []}),
             }
         }
  
@@ -24,29 +24,17 @@ class GetRequestNode:
  
     CATEGORY = "RequestNode/Get Request"
  
-    def make_get_request(self, target_url, headers=None, json_array=None):
-        # 構建參數字典
-        params = {}
-        
-        # 合併json_array中的所有JSON
-        if json_array:
-            for json_obj in json_array:
-                if isinstance(json_obj, dict):
-                    params.update(json_obj)
-        
-        # 設置默認headers
+    def make_get_request(self, target_url, headers=None, query_list=None):
         request_headers = {'Content-Type': 'application/json'}
         if headers:
             request_headers.update(headers)
         
 
         try:
-            # 使用構建的參數發送 GET 請求
-            response = requests.get(target_url, params=params, headers=request_headers)
+            response = requests.get(target_url, params=query_list, headers=request_headers)
             
-            # 準備四種不同格式的輸出
             text_output = response.text
-            file_output = response.content  # 直接返回字節串
+            file_output = response.content
             
             try:
                 json_output = response.json()
@@ -58,7 +46,7 @@ class GetRequestNode:
         except Exception as e:
             error_message = str(e)
             text_output = error_message
-            file_output = error_message.encode()  # 將錯誤消息轉換為字節串
+            file_output = error_message.encode()
             json_output = {"error": error_message}
             any_output = error_message.encode()
         
@@ -69,5 +57,5 @@ NODE_CLASS_MAPPINGS = {
 }
  
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "GetRequestNode": "GET Request Node"
+    "GetRequestNode": "Get Request Node"
 }

@@ -1,5 +1,3 @@
-import json
-
 class KeyValueNode:
     def __init__(self):
         pass
@@ -12,29 +10,27 @@ class KeyValueNode:
                 "value": ("STRING", {"default": ""}),
             },
             "optional": {
-                "input_json": ("LIST", {"default": None}),
+                "KEY_VALUE": ("KEY_VALUE", {"default": None}),
             }
         }
  
-    RETURN_TYPES = ("LIST",)
-    RETURN_NAMES = ("json_array",)
+    RETURN_TYPES = ("KEY_VALUE",)
+    RETURN_NAMES = ("KEY_VALUE",)
  
     FUNCTION = "create_key_value"
  
     CATEGORY = "RequestNode/KeyValue"
  
-    def create_key_value(self, key="", value="", input_json=None):
+    def create_key_value(self, key="", value="", KEY_VALUE=None):
         output = {}
         
-        # 合并输入JSON (从LIST中取第一个元素)
-        if input_json and len(input_json) > 0 and isinstance(input_json[0], dict):
-            output.update(input_json[0])
+        if KEY_VALUE is not None:
+            output.update(KEY_VALUE)
             
-        # 添加当前key/value
         if key and value:
             output[key] = value
             
-        return ([output],)
+        return (output,)
 
 NODE_CLASS_MAPPINGS = {
     "KeyValueNode": KeyValueNode

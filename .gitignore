@@ -13,4 +13,3 @@ venv/
 environment.yml
 .DS_Store
 Thumbs.db
-faster-whisper-large-v3/
