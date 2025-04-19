@@ -14,7 +14,7 @@ class PostRequestNode:
                 "request_body": ("STRING", {"default": "{}", "multiline": True}),
             },
             "optional": {
-                "headers": ("DICT", {"default": None}),
+                "headers": ("KEY_VALUE", {"default": None}),
                 "str0": ("STRING", {"default": ""}),
                 "str1": ("STRING", {"default": ""}),
                 "str2": ("STRING", {"default": ""}),
@@ -36,16 +36,14 @@ class PostRequestNode:
     CATEGORY = "RequestNode/Post Request"
  
     def make_post_request(self, target_url, request_body, headers=None, str0="", str1="", str2="", str3="", str4="", str5="", str6="", str7="", str8="", str9=""):
-        # 收集所有字符串輸入
         string_inputs = {
             "str0": str0, "str1": str1, "str2": str2, "str3": str3, "str4": str4,
             "str5": str5, "str6": str6, "str7": str7, "str8": str8, "str9": str9
         }
         
-        # 替換 request_body 中的佔位符
         for key, value in string_inputs.items():
             placeholder = f"__{key}__"
-            if value:  # 只有當值不為空時才進行替換
+            if value:
                 request_body = request_body.replace(placeholder, value)
         
         # 嘗試解析 request_body 為 JSON
@@ -54,7 +52,6 @@ class PostRequestNode:
         except json.JSONDecodeError:
             body_data = {"error": "Invalid JSON in request_body"}
         
-        # 合併默認headers與自定義headers
         request_headers = {'Content-Type': 'application/json'}
         if headers:
             request_headers.update(headers)
@@ -87,5 +84,5 @@ NODE_CLASS_MAPPINGS = {
 }
  
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "PostRequestNode": "POST Request Node"
+    "PostRequestNode": "Post Request Node"
 }
