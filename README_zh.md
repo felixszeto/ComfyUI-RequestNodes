@@ -116,6 +116,19 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
     *   **輸出**:
         *   `RETRY_SETTING` (RETRY_SETTING): 包含重試設定的字典。
 
+    **重試邏輯說明:**
+
+    `Retry Settings Node` 允許您為 `Rest Api Node` 配置在滿足特定條件時自動重試。重試邏輯如下：
+
+    *   **`max_retry`**: 定義在初始嘗試失敗後重試請求的最大次數。例如，`max_retry: 3` 表示總共 1 (初始) + 3 (重試) = 4 次嘗試。如果設為 0 *且* 定義了特定的狀態碼條件，則會無限重試。如果未提供任何重試設定，則默認不重試。如果連接了 `RETRY_SETTING` 輸入但未明確設置 `max_retry`，則默認為 3 次重試。
+    *   **`retry_interval`**: 指定重試嘗試之間的延遲時間（毫秒）（默認為 1000 毫秒）。
+    *   **`retry_until_status_code`**: 節點將*持續*重試，*只要*收到的 HTTP 狀態碼*不*等於此值（且未達到 `max_retry` 限制）。適用於等待特定的成功代碼（例如 200）。
+    *   **`retry_until_not_status_code`**: 節點將*持續*重試，*只要*收到的 HTTP 狀態碼*等於*此值（且未達到 `max_retry` 限制）。適用於在特定的臨時錯誤代碼上重試（例如，當狀態為 202 Accepted 時重試）。
+    *   **默認重試條件 (Non-2xx):** 如果設置了 `max_retry`（或默認為 3）但*既未*指定 `retry_until_status_code` *也未*指定 `retry_until_not_status_code`，則節點將*僅在*狀態碼*不在* 200-299 範圍內（即非成功響應）時重試。
+    *   **異常情況:** 任何網絡或請求異常也會觸發重試嘗試，並遵守 `max_retry` 限制和 `retry_interval`。
+    *   **優先級:** 如果同時設置了 `retry_until_status_code` 和 `retry_until_not_status_code`，則必須滿足（或分別不滿足）這兩個條件才能根據狀態碼停止重試。僅在*未*設置特定狀態碼條件時，才會檢查默認的 non-2xx 條件。
+
+
 ## 貢獻
 
 歡迎提交 issues 和 pull requests 來改進 ComfyUI-RequestNodes！

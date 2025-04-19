@@ -116,6 +116,19 @@ After installation, you can find the nodes under the "RequestNode" category in t
     *   **Outputs**:
         *   `RETRY_SETTING` (RETRY_SETTING): A dictionary containing the retry setting(s).
 
+    **Retry Logic Explanation:**
+
+    The `Retry Settings Node` allows you to configure automatic retries for the `Rest Api Node` when specific conditions are met. The retry logic works as follows:
+
+    *   **`max_retry`**: Defines the maximum number of times to retry the request after the initial attempt fails. For example, `max_retry: 3` means a total of 1 (initial) + 3 (retries) = 4 attempts. If set to 0 *and* specific status code conditions are defined, it will retry indefinitely. If no retry settings are provided, the default is no retries. If the `RETRY_SETTING` input is connected but `max_retry` is not explicitly set, it defaults to 3 retries.
+    *   **`retry_interval`**: Specifies the delay in milliseconds between retry attempts (default is 1000ms).
+    *   **`retry_until_status_code`**: The node will keep retrying *as long as* the HTTP status code received is *not* equal to this value (and `max_retry` limit is not reached). Useful for waiting for a specific success code (e.g., 200).
+    *   **`retry_until_not_status_code`**: The node will keep retrying *as long as* the HTTP status code received *is* equal to this value (and `max_retry` limit is not reached). Useful for retrying on specific temporary error codes (e.g., retrying while status is 202 Accepted).
+    *   **Default Retry Condition (Non-2xx):** If `max_retry` is set (or defaults to 3) but *neither* `retry_until_status_code` nor `retry_until_not_status_code` are specified, the node will retry *only if* the status code is *not* in the 200-299 range (i.e., a non-successful response).
+    *   **Exceptions:** Any network or request exception will also trigger a retry attempt, respecting the `max_retry` limit and `retry_interval`.
+    *   **Priority:** If both `retry_until_status_code` and `retry_until_not_status_code` are set, both conditions must be met (or not met, respectively) to stop retrying based on status code. The default non-2xx condition is only checked if specific status code conditions are *not* set.
+
+
 ## Contribution
 
 Welcome to submit issues and pull requests to improve ComfyUI-RequestNodes!
