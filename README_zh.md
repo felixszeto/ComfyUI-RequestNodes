@@ -25,8 +25,8 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
 ![rest_node](workflows/get_node.png)
 * `post_node.json` - POST 請求工作流程模板
 ![rest_node](workflows/post_node.png)
-* `form-post-request-node.json` - FORM POST 請求工作流程模板
-![rest_node](workflows/form-post-request-node.png)
+* `form_post_request_node.json` - FORM POST 請求工作流程模板
+![rest_node](workflows/form_post_request_node.png)
 * `workflows/rest_node.json` - REST API 請求工作流程模板
 ![rest_node](workflows/rest_node.png)
 

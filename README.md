@@ -25,8 +25,8 @@ The plugin includes the following test resources:
 ![rest_node](workflows/get_node.png)
 * `post_node.json` - POST request workflow template
 ![rest_node](workflows/post_node.png)
-* `form-post-request-node.json` - FORM POST request workflow template
-![rest_node](workflows/form-post-request-node.png)
+* `form_post_request_node.json` - FORM POST request workflow template
+![rest_node](workflows/form_post_request_node.png)
 * `workflows/rest_node.json` - REST API request workflow template
 ![rest_node](workflows/rest_node.png)
 
