@@ -6,6 +6,7 @@ import io
 import traceback
 from werkzeug.exceptions import HTTPException
 import random
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -148,6 +149,40 @@ def return_request_info():
         return jsonify(request_info)
     except Exception as e:
         print(f"处理 /api/request_info 请求时出错: {str(e)}")
+        return jsonify({"error": "处理请求时发生错误", "details": str(e)}), 500
+
+@app.route('/api/form_test', methods=['POST'])
+def handle_form_post():
+    print(f"Received POST request on /api/form_test")
+    try:
+        form_data = request.form.to_dict()
+        files_info = {}
+        if request.files:
+            upload_folder = 'uploads'
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+            
+            for field_name in request.files:
+                files_info[field_name] = []
+                for file_storage in request.files.getlist(field_name):
+                    filename = file_storage.filename
+                    file_path = os.path.join(upload_folder, filename)
+                    file_storage.save(file_path)
+                    
+                    files_info[field_name].append({
+                        "filename": filename,
+                        "content_type": file_storage.content_type,
+                        "saved_path": file_path
+                    })
+
+        response_data = {
+            "received_form_data": form_data,
+            "received_files_info": files_info
+        }
+        print(f"Form test data: {response_data}")
+        return jsonify(response_data)
+    except Exception as e:
+        print(f"处理 /api/form_test 请求时出错: {str(e)}")
         return jsonify({"error": "处理请求时发生错误", "details": str(e)}), 500
 
 

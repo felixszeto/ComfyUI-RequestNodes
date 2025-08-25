@@ -8,8 +8,12 @@ ComfyUI-RequestNodes is a custom node plugin for ComfyUI that provides functiona
 
 *   **Get Request Node**: Sends GET requests and retrieves responses.
 *   **Post Request Node**: Sends POST requests and retrieves responses.
+*   **Form Post Request Node**: Sends POST requests in `multipart/form-data` format, supporting file (image) uploads.
 *   **Rest Api Node**: A versatile node for sending various HTTP methods (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS) with retry settings.
+*   **Image to Base64 Node**: Converts an image to a Base64 encoded string.
+*   **Image to Blob Node**: Converts an image to a Blob (Binary Large Object).
 *   **Key/Value Node**: Creates key/value pairs for building request parameters, headers, or other dictionary-like structures.
+*   **Chain Image Node**: Uploads an image and adds it to an image batch, allowing for chaining to build a batch from multiple images.
 *   **String Replace Node**: Replaces placeholders in a string with provided values.
 *   **Retry Settings Node**: Creates retry setting configurations for the Rest Api Node.
 
@@ -21,6 +25,8 @@ The plugin includes the following test resources:
 ![rest_node](workflows/get_node.png)
 * `post_node.json` - POST request workflow template
 ![rest_node](workflows/post_node.png)
+* `form-post-request-node.json` - FORM POST request workflow template
+![rest_node](workflows/form-post-request-node.png)
 * `workflows/rest_node.json` - REST API request workflow template
 ![rest_node](workflows/rest_node.png)
 
@@ -73,6 +79,33 @@ After installation, you can find the nodes under the "RequestNode" category in t
         *   `any` (ANY): The raw response content.
     *   ![image](https://github.com/user-attachments/assets/6eda9fef-48cf-478c-875e-6bd6d850bff2)
 
+*   **Form Post Request Node**:
+    *   **Category**: RequestNode/Post Request
+    *   **Inputs**:
+        *   `target_url` (STRING, required): The URL to send the POST request to.
+        *   `image` (IMAGE, required): The image or image batch to upload. If an image batch is provided, all images will be sent in the same request.
+        *   `image_field_name` (STRING, required): The field name for the image in the form.
+        *   `form_fields` (KEY_VALUE, optional): Other form fields, typically from a Key/Value Node.
+        *   `headers` (KEY_VALUE, optional): Request headers, typically from a Key/Value Node.
+    *   **Outputs**:
+        *   `text` (STRING): The response body as text.
+        *   `json` (JSON): The response body parsed as JSON (if valid).
+        *   `any` (ANY): The raw response content.
+
+*   **Image to Base64 Node**:
+    *   **Category**: RequestNode/Converters
+    *   **Inputs**:
+        *   `image` (IMAGE, required): The image to convert.
+    *   **Outputs**:
+        *   `STRING`: The Base64 encoded image string.
+
+*   **Image to Blob Node**:
+    *   **Category**: RequestNode/Converters
+    *   **Inputs**:
+        *   `image` (IMAGE, required): The image to convert.
+    *   **Outputs**:
+        *   `BYTES`: The raw binary data of the image.
+
 *   **Rest Api Node**:
     *   **Category**: RequestNode/REST API
     *   **Inputs**:
@@ -98,6 +131,17 @@ After installation, you can find the nodes under the "RequestNode" category in t
     *   **Outputs**:
         *   `KEY_VALUE` (KEY_VALUE): A dictionary containing the key/value pair(s).
     *   ![image](https://github.com/user-attachments/assets/dfe7dab0-2b1b-4f99-ac6f-89e01d03b7e0)
+
+*   **Chain Image Node**:
+    *   **Category**: RequestNode/Utils
+    *   **Description**: This node allows you to upload an image and add it to an image batch. You can chain multiple nodes of this type together to create a batch of several images. If you upload images with different dimensions, this node will automatically resize subsequent images to match the dimensions of the first one in the batch.
+    *   **Inputs**:
+        *   `image` (IMAGE, required): The image to upload. Use the "choose file to upload" button.
+        *   `image_batch_in` (IMAGE, optional): An existing image batch to append the newly uploaded image to. This can be connected from another `Chain Image Node` to build a batch.
+    *   **Outputs**:
+        *   `image_batch_out` (IMAGE): The combined image batch.
+    *   **Example**:
+    *   ![image](workflows/chainable_upload_image_node.png)
 
 *   **String Replace Node**:
     *   **Category**: RequestNode/Utils

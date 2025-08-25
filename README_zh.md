@@ -8,8 +8,12 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
 
 *   **Get Request Node**: 發送 GET 請求並檢索響應。
 *   **Post Request Node**: 發送 POST 請求並檢索響應。
+*   **Form Post Request Node**: 發送 `multipart/form-data` 格式的 POST 請求，支援檔案（圖片）上傳。
 *   **Rest Api Node**: 一個多功能的節點，用於發送各種 HTTP 方法 (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS) 並支援重試設定。
+*   **Image to Base64 Node**: 將圖片轉換為 Base64 編碼的字串。
+*   **Image to Blob Node**: 將圖片轉換為 Blob (二進位大型物件)。
 *   **Key/Value Node**: 創建鍵/值對，用於構建請求參數、標頭或其他類似字典的結構。
+*   **Chain Image Node**: 上傳圖片並將其添加到圖片批次中，支援鏈式操作以構建多圖批次。
 *   **String Replace Node**: 使用提供的值替換字串中的佔位符。
 *   **Retry Settings Node**: 為 Rest Api Node 創建重試設定配置。
 
@@ -21,6 +25,8 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
 ![rest_node](workflows/get_node.png)
 * `post_node.json` - POST 請求工作流程模板
 ![rest_node](workflows/post_node.png)
+* `form-post-request-node.json` - FORM POST 請求工作流程模板
+![rest_node](workflows/form-post-request-node.png)
 * `workflows/rest_node.json` - REST API 請求工作流程模板
 ![rest_node](workflows/rest_node.png)
 
@@ -73,6 +79,33 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
         *   `any` (ANY): 原始響應內容。
     *   ![image](https://github.com/user-attachments/assets/6eda9fef-48cf-478c-875e-6bd6d850bff2)
 
+*   **Form Post Request Node**:
+    *   **分類**: RequestNode/Post Request
+    *   **輸入**:
+        *   `target_url` (STRING, 必需): 要發送 POST 請求的 URL。
+        *   `image` (IMAGE, 必需): 要上傳的圖片或圖片批次。如果提供圖片批次，所有圖片將在同一個請求中發送。
+        *   `image_field_name` (STRING, 必需): 圖片在表單中的欄位名稱。
+        *   `form_fields` (KEY_VALUE, 可選): 其他表單欄位，通常來自 Key/Value Node。
+        *   `headers` (KEY_VALUE, 可選): 請求標頭，通常來自 Key/Value Node。
+    *   **輸出**:
+        *   `text` (STRING): 響應主體作為文本。
+        *   `json` (JSON): 響應主體解析為 JSON (如果有效)。
+        *   `any` (ANY): 原始響應內容。
+
+*   **Image to Base64 Node**:
+    *   **分類**: RequestNode/Converters
+    *   **輸入**:
+        *   `image` (IMAGE, 必需): 要轉換的圖片。
+    *   **輸出**:
+        *   `STRING`: Base64 編碼的圖片字串。
+
+*   **Image to Blob Node**:
+    *   **分類**: RequestNode/Converters
+    *   **輸入**:
+        *   `image` (IMAGE, 必需): 要轉換的圖片。
+    *   **輸出**:
+        *   `BYTES`: 圖片的原始二進位資料。
+
 *   **Rest Api Node**:
     *   **分類**: RequestNode/REST API
     *   **輸入**:
@@ -98,6 +131,17 @@ ComfyUI-RequestNodes 是一個用於 ComfyUI 的自訂節點插件，提供了�
     *   **輸出**:
         *   `KEY_VALUE` (KEY_VALUE): 包含鍵值對的字典。
     *   ![image](https://github.com/user-attachments/assets/dfe7dab0-2b1b-4f99-ac6f-89e01d03b7e0)
+
+*   **Chain Image Node**:
+    *   **分類**: RequestNode/Utils
+    *   **說明**: 此節點允許您上傳一張圖片並將其添加到圖片批次中。您可以將多個此類型的節點鏈接在一起，以創建包含多張圖片的批次。如果您上傳的圖片尺寸不同，此節點會自動將後續圖片的大小調整為與批次中第一張圖片的尺寸相符。
+    *   **輸入**:
+        *   `image` (IMAGE, 必需): 要上傳的圖片。請使用 "choose file to upload" 按鈕。
+        *   `image_batch_in` (IMAGE, 可選): 一個已有的圖片批次，用於附加新上傳的圖片。可連接另一個 `Chain Image Node` 的輸出來構建批次。
+    *   **輸出**:
+        *   `image_batch_out` (IMAGE): 合併後的圖片批次。
+    *   **範例**:
+    *   ![image](workflows/chainable_upload_image_node.png)
 
 *   **String Replace Node**:
     *   **分類**: RequestNode/Utils
